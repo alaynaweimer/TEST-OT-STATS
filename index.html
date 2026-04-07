@@ -466,7 +466,7 @@ function buildStatsHTML(cData, viewingName) {
         <div class="alert-details" id="helpForm">
           <textarea id="helpDetails" placeholder="Tell your lead what's going on — e.g. I had a lot of cancellations this week and I'm not sure how to catch up. Can we talk through my schedule?"></textarea>
           <button class="alert-send-btn" id="helpSendBtn" onclick="sendHelpAlert('Q2 2026','weekly',83,35.5,10,20)">
-            Send to my Lead + Alayna →
+            Send to Mandy &amp; HR →
           </button>
         </div>
         <div class="alert-sent" id="alertSent"></div>
@@ -752,7 +752,7 @@ function buildAlertCard(cData, weeklyRows) {
       <div class="alert-details" id="helpForm">
         <textarea id="helpDetails" placeholder="Tell your lead what's going on — e.g. 'I had a lot of cancellations this week and I'm not sure how to catch up. Can we talk through my schedule?'"></textarea>
         <button class="alert-send-btn" id="helpSendBtn" onclick="sendHelpAlert('${quarter}','${missedType}',${clientHrs},${qchePct},${weeksLeft},${weeklyExp})">
-          Send to my Lead + Alayna →
+          Send to Mandy &amp; HR →
         </button>
       </div>
       <div class="alert-sent" id="alertSent"></div>
@@ -783,7 +783,10 @@ async function sendPTOAlert(quarter, missedType, clientHrs, qchePct, weeksLeft, 
       '&weeklyExp=' + weeklyExp +
       '&details=';
     await fetch(url);
-    if (sentEl) { sentEl.className = 'alert-sent show'; sentEl.textContent = '✅ Message sent to your lead and Alayna!'; }
+    if (sentEl) { 
+      sentEl.className = 'alert-sent show'; 
+      sentEl.innerHTML = '✅ Your lead and HR have been notified you are planning PTO.<br><strong>⚠️ Don't forget — you still need to submit your PTO request in Gusto!</strong>'; 
+    }
   } catch(e) {
     if (sentEl) { sentEl.className = 'alert-sent show'; sentEl.textContent = '❌ Error sending — try again.'; }
   }
