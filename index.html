@@ -440,7 +440,38 @@ function buildStatsHTML(cData, viewingName) {
     bonusHTML=`<div class="bonus-none">ℹ️ <strong>${needed > 0 ? needed+' more client hours' : 'Hit your QCHE!'}</strong> ${needed > 0 ? 'needed to reach 100% QCHE and start earning bonus' : ''}</div>`;
   }
   return `
-    <div id="alertCardWrap"></div>
+    <div id="alertCardWrap">
+      <div class="alert-card danger" id="alertCard">
+        <div class="alert-header">
+          <span class="alert-icon">🔴</span>
+          <div>
+            <div class="alert-title">Falling behind — your lead can help</div>
+            <div class="alert-sub">📉 Last week you were 12 hrs below your 20 hr weekly target. Your 4-week average is also below target.</div>
+          </div>
+        </div>
+        <div class="alert-stats">
+          <div class="alert-stat"><div class="alert-stat-val">83</div><div class="alert-stat-lbl">Client Hrs</div></div>
+          <div class="alert-stat"><div class="alert-stat-val">35.5%</div><div class="alert-stat-lbl">QCHE %</div></div>
+          <div class="alert-stat"><div class="alert-stat-val">10</div><div class="alert-stat-lbl">Wks Left</div></div>
+          <div class="alert-stat"><div class="alert-stat-val">20</div><div class="alert-stat-lbl">Wkly Target</div></div>
+        </div>
+        <div class="alert-btns">
+          <button class="alert-btn-pto" onclick="sendPTOAlert('Q2 2026','weekly',83,35.5,10,20)">
+            📅 I'm planning PTO
+          </button>
+          <button class="alert-btn-help" onclick="toggleHelpForm()">
+            🙋 I need help
+          </button>
+        </div>
+        <div class="alert-details" id="helpForm">
+          <textarea id="helpDetails" placeholder="Tell your lead what's going on — e.g. I had a lot of cancellations this week and I'm not sure how to catch up. Can we talk through my schedule?"></textarea>
+          <button class="alert-send-btn" id="helpSendBtn" onclick="sendHelpAlert('Q2 2026','weekly',83,35.5,10,20)">
+            Send to my Lead + Alayna →
+          </button>
+        </div>
+        <div class="alert-sent" id="alertSent"></div>
+      </div>
+    </div>
     <div class="hero-card">
       <div class="av">${viewingName.split(' ').map(n=>n[0]).join('')}</div>
       <div class="hero-info">
