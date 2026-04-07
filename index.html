@@ -440,6 +440,7 @@ function buildStatsHTML(cData, viewingName) {
     bonusHTML=`<div class="bonus-none">ℹ️ <strong>${needed > 0 ? needed+' more client hours' : 'Hit your QCHE!'}</strong> ${needed > 0 ? 'needed to reach 100% QCHE and start earning bonus' : ''}</div>`;
   }
   return `
+    <div id="alertCardWrap"></div>
     <div class="hero-card">
       <div class="av">${viewingName.split(' ').map(n=>n[0]).join('')}</div>
       <div class="hero-info">
